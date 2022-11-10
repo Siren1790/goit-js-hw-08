@@ -1,5 +1,1 @@
-const x = "Hello World";
-
-сonsole.log(x);
-
-
+console.log('xxx');
