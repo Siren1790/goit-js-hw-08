@@ -15,7 +15,6 @@ const createGallary = (items) => {
       )
       .join("");
 };
-console.log(createGallary(galleryItems));
 divGalleryRef.innerHTML = createGallary(galleryItems);
 
 const gallery = new SimpleLightbox('.gallery a', {

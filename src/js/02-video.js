@@ -14,13 +14,10 @@ import throttle from 'lodash.throttle';
 const player = new Player(document.querySelector("#vimeo-player"));
 const LOCALSTORAGE_KEY = "videoplayer-current-time";
 
-player.on('timeupdate', throttle(({seconds}) => {
-   localStorage.setItem(LOCALSTORAGE_KEY , JSON.stringify(seconds))
-}, 1000));
+const stopwatchSecond = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
-player.setCurrentTime().then(function(seconds) {
+player.setCurrentTime(stopwatchSecond).then(function(seconds) {
     // seconds = the actual time that the player seeked to
-   seconds = Number(localStorage.getItem(LOCALSTORAGE_KEY));
 }).catch(function(error) {
     switch (error.name) {
         case 'RangeError':
@@ -32,6 +29,10 @@ player.setCurrentTime().then(function(seconds) {
             break;
     }
 });
+
+player.on('timeupdate', throttle(({seconds}) => {
+   localStorage.setItem(LOCALSTORAGE_KEY , JSON.stringify(seconds))
+}, 1000));
 
 
 
