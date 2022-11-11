@@ -23,8 +23,11 @@ const saveLocalStorage = (evt) => {
    localStorage.setItem(keyLocal, JSON.stringify(objForValues));
 };
 
-// feedbackForm.submit.onclick = (event) => {
-//    event.preventDefault()
-//    console.log('xxx');
-// }
+
 feedbackForm.addEventListener('input', throttle(saveLocalStorage, 2000));
+
+feedbackForm.addEventListener("submit", (event) => {
+   event.preventDefault();
+   console.log("Input email: ", event.target.email.value);
+   console.log("Input textarea: ", event.target.message.value);
+})
