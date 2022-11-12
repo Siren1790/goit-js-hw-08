@@ -24,10 +24,15 @@ const saveLocalStorage = (evt) => {
 };
 
 
-feedbackForm.addEventListener('input', throttle(saveLocalStorage, 2000));
+feedbackForm.addEventListener('input', throttle(saveLocalStorage, 500));
 
 feedbackForm.addEventListener("submit", (event) => {
    event.preventDefault();
-   console.log("Input email: ", event.target.email.value);
-   console.log("Input textarea: ", event.target.message.value);
+   if (!feedbackForm.email.value || !feedbackForm.message.value) {
+      return alert('Не всі поля Заповнені.');
+   }
+   
+   console.log(objForValues);
+   localStorage.clear();
+   feedbackForm.reset();    
 })
