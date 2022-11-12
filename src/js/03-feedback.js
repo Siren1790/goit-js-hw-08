@@ -33,6 +33,7 @@ feedbackForm.addEventListener("submit", (event) => {
    }
    
    console.log(objForValues);
+   Object.keys(objForValues).forEach(key => delete objForValues[key]);
    localStorage.clear();
-   feedbackForm.reset();    
+   feedbackForm.reset();
 })
